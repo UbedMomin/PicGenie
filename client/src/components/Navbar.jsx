@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppContext";
 
 const Navbar = () => {
 
-const {user} = useContext(AppContext)
+const {user, setShowLogin} = useContext(AppContext)
   const navigate = useNavigate(); // ✅ FIXED
     // const navigate = useNavigate; ... This assigns the function itself, not the result of calling it.
 
@@ -39,7 +39,7 @@ const {user} = useContext(AppContext)
             >
               Pricing
             </p>
-            <button className="bg-zinc-800 text-white px-7 py-2 sm:px-10 text-sm rounded-full hover:bg-zinc-700 transition">
+            <button onClick={()=>setShowLogin(true)} className="bg-zinc-800 text-white px-7 py-2 sm:px-10 text-sm rounded-full hover:bg-zinc-700 transition">
               Login
             </button>
           </div>
