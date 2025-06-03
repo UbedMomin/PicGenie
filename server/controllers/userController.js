@@ -75,26 +75,32 @@ const loginUser = async (req, res) => {
   }
 };
 
-// Updated userCredits to use req.user.id from middleware
 const userCredits = async (req, res) => {
   try {
-    // ✅ Use req.user.id instead of req.body.userId
+    // Get user ID from auth middleware
     const userId = req.user.id;
 
-    const user = await userModel.findById(userId);
+    // Find user in database
+    const user = await userModel.findById(userId).select('name creditBalance');
     if (!user) {
-      return res.status(404).json({ success: false, message: "User not found" });
+      return res.status(404).json({ 
+        success: false, 
+        message: "User not found" 
+      });
     }
 
+    // Return credits with success response
     res.json({
       success: true,
-      credits: user.creditBalance,
-      user: { name: user.name },
+      credits: user.creditBalance || 0,
+      user: { name: user.name }
     });
   } catch (error) {
-    console.error(error.message);
-    res.status(500).json({ success: false, message: error.message });
+    console.error("Credits error:", error.message);
+    res.status(500).json({ 
+      success: false, 
+      message: "Server error" 
+    });
   }
 };
-
 export { registerUser, loginUser, userCredits };

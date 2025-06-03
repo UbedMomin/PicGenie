@@ -4,11 +4,11 @@ import userAuth from '../middlewares/auth.js';
 
 const userRouter = express.Router();
 
-// Public routes
+// Public routes (no authentication required)
 userRouter.post('/register', registerUser);
 userRouter.post('/login', loginUser);
 
-// Protected route using auth middleware
+// Protected routes (require valid JWT token)
 userRouter.post('/credits', userAuth, userCredits);
 
 export default userRouter;
