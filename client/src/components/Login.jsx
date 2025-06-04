@@ -7,6 +7,10 @@ function Login() {
   const [state, setState] = useState("Login");
   const { setShowLogin } = useContext(AppContext);
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
 
@@ -16,14 +20,14 @@ function Login() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center"
-    >
-      <motion.form 
-      initial={{ opacity: 0.2, y: 50 }}
-      transition={{ duration: 0.3 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="relative bg-white p-10 rounded-xl text-slate-500">
+    <div className="fixed top-0 left-0 right-0 bottom-0 z-10 backdrop-blur-sm bg-black/30 flex justify-center items-center">
+      <motion.form
+        initial={{ opacity: 0.2, y: 50 }}
+        transition={{ duration: 0.3 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="relative bg-white p-10 rounded-xl text-slate-500"
+      >
         <h1 className="text-center text-2xl text-neutral-700 font-medium">
           {state}
         </h1>
@@ -33,6 +37,8 @@ function Login() {
           <div className="border px-6 py-2 flex items-center gap-2 rounded-full mt-5">
             <img src={assets.user_icon} alt="" /> icon
             <input
+              onChange={(e) => setName(e.target.value)}
+              value={name}
               type="text"
               className="outline-none text-sm"
               placeholder="Full Name "
@@ -44,6 +50,8 @@ function Login() {
         <div className="border px-6 py-2 flex items-center gap-2 rounded-full mt-4">
           <img src={assets.email_icon} alt="" />
           <input
+            onChange={(e) => setName(e.target.value)}
+            value={email}
             type="email"
             className="outline-none text-sm"
             placeholder="Email id "
@@ -54,6 +62,8 @@ function Login() {
         <div className="border px-6 py-2 flex items-center gap-2 rounded-full mt-4">
           <img src={assets.lock_icon} alt="" />
           <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
             type="password"
             className="outline-none text-sm"
             placeholder="password"
