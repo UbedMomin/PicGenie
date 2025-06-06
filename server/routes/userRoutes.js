@@ -9,7 +9,7 @@ userRouter.post('/register', registerUser);
 userRouter.post('/login', loginUser);
 
 // Protected routes (require valid JWT token)
-userRouter.post('/credits', userAuth, userCredits);
+userRouter.get('/credits', userAuth, userCredits);
 
 export default userRouter;
 
